@@ -30,7 +30,7 @@ public class App {
 				String line = in.nextLine();
 
 				if(!line.equals("graph")){
-					System.out.println(t.predict(new Point(Arrays.stream(in.nextLine().split("[\\s,]")).map(Double::valueOf).toArray(Double[]::new))));
+					System.out.println(t.predict(new Point(Arrays.stream(line.split("[\\s,]")).map(Double::valueOf).toArray(Double[]::new))));
 				}else{
 					System.out.println("Provide limit of the K value to check");
 					Trainer.drawGraph(t, in.nextInt());
@@ -118,7 +118,6 @@ class Trainer{
 				}
 
 				System.out.printf("%.2f%%%n", result * 100);
-
 			}
 
 		}catch (IOException e){
@@ -144,13 +143,13 @@ class Point{
 		cords.add(cord);
 	}
 
-	public String toString(){
-		return String.format("%s: %s", name, cords);
-	}
-
 	double getDistance(Point p){
 		double sum = IntStream.range(0, cords.size()).mapToDouble(n -> Math.pow(cords.get(n) - p.cords.get(n), 2)).sum();
 
 		return Math.sqrt(sum);
+	}
+
+	public String toString(){
+		return String.format("%s: %s", name, cords);
 	}
 }
