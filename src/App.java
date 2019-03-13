@@ -22,7 +22,7 @@ public class App {
 			Trainer t = new Trainer(Paths.get(trainSet), Paths.get(testSet), K);
 				t.loadData();
 
-			System.out.println("Accurancy: " + t.test());
+			System.out.println("Accuracy: " + t.test());
 
 			System.out.println("You can now type vectors to predict or 'graph' to draw graph of k-accurancy relation");
 
@@ -33,7 +33,7 @@ public class App {
 					System.out.println(t.predict(new Point(Arrays.stream(line.split("[\\s,]")).map(Double::valueOf).toArray(Double[]::new))));
 				}else{
 					System.out.println("Provide limit of the K value to check");
-					Trainer.drawGraph(t, in.nextInt());
+					Trainer.drawGraph(t, Integer.parseInt(in.nextLine()));
 				}
 			}
 
